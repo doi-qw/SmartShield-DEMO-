@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: solidity-scanner-pro
+    env: node
+    buildCommand: npm ci
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: NPM_CONFIG_PRODUCTION
+        value: false
+    autoDeploy: true
+    healthCheckPath: /api/health
+    disk:
+      name: tmp
+      mountPath: /tmp
+      sizeGB: 1
