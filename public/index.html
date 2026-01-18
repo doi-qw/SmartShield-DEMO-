@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Industrial-grade Solidity Security Scanner. Detect vulnerabilities in smart contracts before deployment.">
+    <meta name="keywords" content="solidity, security, scanner, smart contract, blockchain, web3, audit, vulnerability">
+    
+    <title>Solidity Security Scanner Pro | Smart Contract Audit</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Убрал CodeMirror ссылки - они вызывали ошибку! -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-shield-alt"></i>
+                <span class="brand-text">SolidityScanner<span class="brand-pro">.Pro</span></span>
+            </div>
+            <div class="nav-links">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#how-it-works" class="nav-link">How It Works</a>
+                <a href="#api" class="nav-link">API</a>
+                <a href="https://github.com/yourusername/solidity-scanner-pro" target="_blank" class="nav-link">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Industrial-Grade <span class="highlight">Solidity Security</span> Scanner
+                </h1>
+                <p class="hero-subtitle">
+                    Detect vulnerabilities in your smart contracts before deployment. 
+                    Professional security analysis with 7+ vulnerability categories and symbolic execution.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">7+</span>
+                        <span class="stat-label">Vulnerability Categories</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Open Source</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">&lt;1s</span>
+                        <span class="stat-label">Avg Scan Time</span>
+                    </div>
+                </div>
+                <a href="#scanner" class="btn btn-primary btn-lg">
+                    <i class="fas fa-play-circle"></i> Start Scanning Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scanner Section -->
+    <section id="scanner" class="scanner-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Smart Contract Security Scanner</h2>
+                <p class="section-subtitle">
+                    Paste your Solidity code below for instant security analysis. 
+                    Supports all Solidity versions and complex contract structures.
+                </p>
+            </div>
+
+            <div class="scanner-container">
+                <!-- Code Input -->
+                <div class="scanner-input">
+                    <div class="input-header">
+                        <div class="input-tabs">
+                            <button class="tab-btn active" id="editor-tab">Editor</button>
+                            <button class="tab-btn" id="upload-tab">Upload</button>
+                            <div class="demo-dropdown">
+                                <button class="tab-btn" id="demo-btn">
+                                    Demo Contracts <i class="fas fa-chevron-down"></i>
+                                </button>
+                                <div class="demo-menu" id="demo-menu">
+                                    <a href="#" data-demo="reentrancy" class="demo-option">
+                                        <i class="fas fa-exchange-alt"></i> Reentrancy
+                                    </a>
+                                    <a href="#" data-demo="front-running" class="demo-option">
+                                        <i class="fas fa-running"></i> Front-running
+                                    </a>
+                                    <a href="#" data-demo="access-control" class="demo-option">
+                                        <i class="fas fa-lock"></i> Access Control
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-actions">
+                            <button id="clear-btn" class="btn btn-secondary btn-sm">
+                                <i class="fas fa-trash"></i> Clear
+                            </button>
+                            <button id="format-btn" class="btn btn-secondary btn-sm">
+                                <i class="fas fa-code"></i> Format
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <textarea id="source-code" placeholder="// Paste your Solidity code here...
+// Example:
+// pragma solidity ^0.8.0;
+// 
+// contract MyContract {
+//     function withdraw() public {
+//         // Your code here
+//     }
+// }" spellcheck="false" rows="20"></textarea>
+                    
+                    <div class="input-footer">
+                        <div class="scan-options">
+                            <label class="checkbox">
+                                <input type="checkbox" id="deep-scan" checked>
+                                <span>Deep Scan (Symbolic Execution)</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" id="taint-analysis" checked>
+                                <span>Taint Analysis</span>
+                            </label>
+                        </div>
+                        <button id="scan-btn" class="btn btn-primary">
+                            <i class="fas fa-search"></i> Scan for Vulnerabilities
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Results -->
+                <div class="scanner-results">
+                    <div class="results-header">
+                        <h3 class="results-title">
+                            <i class="fas fa-clipboard-list"></i>
+                            Security Analysis Results
+                        </h3>
+                        <div class="results-actions">
+                            <button id="export-json" class="btn btn-secondary btn-sm" title="Export as JSON">
+                                <i class="fas fa-download"></i> JSON
+                            </button>
+                            <button id="export-md" class="btn btn-secondary btn-sm" title="Export as Markdown">
+                                <i class="fas fa-file-alt"></i> MD
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="loading" class="loading-state" style="display: none;">
+                        <div class="spinner"></div>
+                        <div class="loading-text">
+                            <h4>Analyzing Smart Contract</h4>
+                            <p>Performing deep security analysis...</p>
+                            <div class="loading-steps">
+                                <span class="step active">Parsing AST</span>
+                                <span class="step">Building Call Graph</span>
+                                <span class="step">Symbolic Execution</span>
+                                <span class="step">Generating Report</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="results" class="results-container">
+                        <div class="welcome-message">
+                            <div class="welcome-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h3>Ready to Scan</h3>
+                            <p>Paste your Solidity code or choose a demo contract to begin security analysis.</p>
+                            <div class="vulnerability-types">
+                                <span class="vuln-badge high">Reentrancy</span>
+                                <span class="vuln-badge medium">Overflow</span>
+                                <span class="vuln-badge high">Access Control</span>
+                                <span class="vuln-badge medium">Front-running</span>
+                                <span class="vuln-badge low">Timestamp Dependence</span>
+                                <span class="vuln-badge high">Delegatecall</span>
+                                <span class="vuln-badge medium">Unchecked Calls</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Professional Security Features</h2>
+                <p class="section-subtitle">
+                    Advanced analysis techniques used by top security auditors
+                </p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sitemap"></i>
+                    </div>
+                    <h3 class="feature-title">Interprocedural Analysis</h3>
+                    <p class="feature-desc">
+                        Cross-function vulnerability detection with call graph construction and cycle detection.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="feature-title">Symbolic Execution</h3>
+                    <p class="feature-desc">
+                        Path exploration and constraint solving to detect edge cases and complex vulnerabilities.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-stream"></i>
+                    </div>
+                    <h3 class="feature-title">Taint Tracking</h3>
+                    <p class="feature-desc">
+                        Track user-controlled data through contract execution to find injection vulnerabilities.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="feature-title">Real-time Analysis</h3>
+                    <p class="feature-desc">
+                        Instant results with detailed explanations and remediation guidance.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-network"></i>
+                    </div>
+                    <h3 class="feature-title">Control Flow Graphs</h3>
+                    <p class="feature-desc">
+                        Visualize contract execution paths and identify logical vulnerabilities.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <h3 class="feature-title">Data Flow Analysis</h3>
+                    <p class="feature-desc">
+                        Track variable definitions and uses to find uninitialized variables and data races.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">How It Works</h2>
+                <p class="section-subtitle">
+                    Three-step process from code to comprehensive security report
+                </p>
+            </div>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Parse & Analyze</h3>
+                        <p>Advanced parser builds complete AST with semantic analysis, storage layout, and inheritance resolution.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Deep Analysis</h3>
+                        <p>Symbolic execution, taint tracking, and interprocedural analysis to find complex vulnerabilities.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Generate Report</h3>
+                        <p>Detailed vulnerability report with severity levels, code locations, and remediation advice.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- API Section -->
+    <section id="api" class="api-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">API Integration</h2>
+                <p class="section-subtitle">
+                    Integrate security scanning into your CI/CD pipeline or development tools
+                </p>
+            </div>
+            
+            <div class="api-demo">
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>REST API Example</span>
+                    </div>
+                    <pre><code>// Scan a contract via API
+const response = await fetch('/api/scan', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        sourceCode: `pragma solidity ^0.8.0;
+                     contract MyContract {...}`,
+        options: {
+            deepScan: true,
+            taintAnalysis: true
+        }
+    })
+});
+
+const result = await response.json();
+// Returns detailed vulnerability report</code></pre>
+                </div>
+                
+                <div class="api-features">
+                    <h4>API Features:</h4>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Rate limiting included</li>
+                        <li><i class="fas fa-check-circle"></i> JSON/XML response formats</li>
+                        <li><i class="fas fa-check-circle"></i> Webhook support</li>
+                        <li><i class="fas fa-check-circle"></i> Batch processing</li>
+                        <li><i class="fas fa-check-circle"></i> Historical scan tracking</li>
+                    </ul>
+                    <a href="#scanner" class="btn btn-secondary">
+                        <i class="fas fa-book"></i> View API Documentation
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="brand">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>SolidityScanner<span class="brand-pro">.Pro</span></span>
+                    </div>
+                    <p class="footer-desc">
+                        Industrial-grade security scanning for Solidity smart contracts.
+                        Open source and community-driven.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://github.com/yourusername" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://twitter.com/yourusername" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://discord.gg/yourinvite" class="social-link">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>Product</h4>
+                        <a href="#features">Features</a>
+                        <a href="#how-it-works">How It Works</a>
+                        <a href="#api">API</a>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h4>Resources</h4>
+                        <a href="#how-it-works">How It Works</a>
+                        <a href="#api">API Docs</a>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h4>Legal</h4>
+                        <a href="#disclaimer">Disclaimer</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 SolidityScanner.Pro. All rights reserved.</p>
+                <p class="disclaimer" id="disclaimer">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    This tool is for security research and educational purposes only. 
+                    Always conduct independent audits before mainnet deployment.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Только наш скрипт, без CodeMirror! -->
+    <script src="app.js"></script>
+</body>
+</html>
