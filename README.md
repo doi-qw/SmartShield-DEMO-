@@ -8,22 +8,22 @@ Symbolic execution • Interprocedural analysis • Taint tracking
 
 ---
 
-🚨 Why This Scanner is Different
+ **Why This Scanner is Different**
 
 | Feature | This Scanner | Slither | Mythril | Solhint |
 |---------|--------------|---------|---------|---------|
-| **Cross-function reentrancy** | ✅ Finds | ❌ Misses | ⚠️ Partial | ❌ No |
-| **Works in-browser** | ✅ Yes | ❌ Needs filesystem | ❌ Needs filesystem | ✅ Yes |
-| **Symbolic execution** | ✅ Yes | ❌ No | ✅ Yes | ❌ No |
-| **Tainted data tracking** | ✅ Yes | ⚠️ Basic | ❌ No | ❌ No |
-| **Interprocedural analysis** | ✅ Yes | ⚠️ Limited | ❌ No | ❌ No |
-| **No installation** | ✅ Web demo | ❌ Python | ❌ Python | ✅ Plugin |
+| **Cross-function reentrancy** | Finds | Misses | Partial | No |
+| **Works in-browser** | Yes | Needs filesystem | Needs filesystem | Yes |
+| **Symbolic execution** |Yes | No | Yes | No |
+| **Tainted data tracking** |Yes | Basic | No | No |
+| **Interprocedural analysis** | Yes | Limited | No | No |
+| **No installation** | Web demo | Python |Python | Plugin |
 
 ---
 
-🔬 What It Detects
+**What It Detects**
 
-🟥 CRITICAL (Funds at risk)
+**CRITICAL** (Funds at risk)
 
 · Reentrancy (cross-function, complex patterns)
 · Unchecked external calls (call/delegatecall/transfer/send)
@@ -31,7 +31,7 @@ Symbolic execution • Interprocedural analysis • Taint tracking
 · Tainted data flows (user input → dangerous operations)
 · Delegatecall risks (user-controlled delegatecall)
 
-🟨 MEDIUM (Logic flaws)
+**MEDIUM** (Logic flaws)
 
 · Timestamp dependence (block.timestamp for randomness)
 · Front-running vulnerabilities (missing slippage/deadline)
@@ -39,7 +39,7 @@ Symbolic execution • Interprocedural analysis • Taint tracking
 · Arithmetic overflows (without unchecked blocks)
 · Tx.origin misuse
 
-🟦 CODE QUALITY
+**CODE QUALITY**
 
 · Selfdestruct usage
 · Assembly risks
@@ -47,11 +47,12 @@ Symbolic execution • Interprocedural analysis • Taint tracking
 
 ---
 
-🎯 Quick Start
+**Quick Start**
 
 1. Try Online (No Installation)
 
-👉 Live Demo
+Live Demo:
+https://smartshield-demo-m0tw.onrender.com/#scanner
 
 2. Use as Library
 
@@ -76,7 +77,7 @@ npx solidity-industrial-scanner -f contract.sol
 
 ---
 
-📊 Real Examples Found
+**Real Examples Found**
 
 Example 1: Cross-function Reentrancy (Most tools miss this)
 
@@ -87,25 +88,25 @@ contract Bank {
     
     function withdraw() external {
         uint amount = balances[msg.sender];
-        (bool success, ) = msg.sender.call{value: amount}(""); // 🔴 CALL
+        (bool success, ) = msg.sender.call{value: amount}(""); // CALL
         require(success);
     }
     
     function updateBalance() external {
-        balances[msg.sender] = 0; // 🔴 STATE CHANGE in DIFFERENT function
+        balances[msg.sender] = 0; // STATE CHANGE in DIFFERENT function
     }
 }
 ```
 
-✅ THIS SCANNER FINDS: "Reentrancy: external call in withdraw() can re-enter through updateBalance()"
-❌ OTHER SCANNERS MISS: They only check within single function
+**THIS SCANNER FINDS:** "Reentrancy: external call in withdraw() can re-enter through updateBalance()"
+**OTHER SCANNERS MISS:** They only check within single function
 
 Example 2: Tainted Data Flow
 
 ```solidity
 function adminOperation(address user) external {
     // user comes from msg.sender (tainted source)
-    executeCritical(user); // 🔴 TAINTED DATA → CRITICAL OPERATION
+    executeCritical(user); // TAINTED DATA → CRITICAL OPERATION
 }
 
 function executeCritical(address target) internal {
@@ -115,7 +116,7 @@ function executeCritical(address target) internal {
 
 ---
 
-🏗️ Architecture
+**Architecture**
 
 ```mermaid
 graph TB
@@ -129,7 +130,7 @@ graph TB
     G --> H[Detailed Report]
 ```
 
-Key Components:
+**Key Components:**
 
 · IndustrialParser – Tolerant parsing (works on incomplete code)
 · CallGraph – Maps function relationships across contracts
@@ -139,7 +140,7 @@ Key Components:
 
 ---
 
-📈 Benchmarks
+**Benchmarks**
 
 Tested on 50+ real vulnerable contracts from:
 
@@ -155,7 +156,7 @@ Remix Analysis 45% 5% ~1s
 
 ---
 
-🚀 Advanced Usage
+**Advanced Usage**
 
 Custom Configuration
 
@@ -169,7 +170,7 @@ const scanner = new IndustrialSecurityScanner(sourceCode, {
 });
 ```
 
-Integration Examples
+**Integration Examples**
 
 · Remix IDE Plugin – In-browser deep analysis
 · CI/CD Pipeline – Pre-commit security checks
@@ -177,7 +178,7 @@ Integration Examples
 
 ---
 
-🤝 Contributing
+**Contributing**
 
 Found a bug? Have an idea for a new detector?
 
@@ -193,14 +194,14 @@ Priority Detectors Needed:
 
 ---
 
-📜 License
+**License**
 
 MIT License – use commercially, modify, distribute.
 Attribution appreciated.
 
 ---
 
-🙏 Acknowledgments
+**Acknowledgments**
 
 This scanner builds upon ideas from:
 
@@ -210,7 +211,7 @@ This scanner builds upon ideas from:
 
 ---
 
-📞 Contact / Support
+**Contact / Support**
 
 Found a critical bug? Open a GitHub Issue.
 Want to integrate? DM on Twitter: @nikoo_qw
@@ -218,7 +219,7 @@ Commercial licensing? Email: shis_hi@mail.ru
 
 ---
 
-⭐ Like This Project?
+**⭐ Like This Project?**
 
 Give it a star on GitHub – it helps others find it.
 Share on Twitter
@@ -229,10 +230,10 @@ Built by [Niko] – Security researcher & tool builder
 
 ---
 
-🚨 Disclaimer
+**Disclaimer**
 
 This tool helps find vulnerabilities but doesn't guarantee security. Always get professional audits for production contracts. The authors are not liable for any losses.
 
 ---
 
-⬇️ Try the Demo • ⭐ Star on GitHub
+**Try the Demo • ⭐ Star on GitHub**
