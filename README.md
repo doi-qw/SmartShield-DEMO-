@@ -10,13 +10,14 @@ Symbolic execution • Interprocedural analysis • Taint tracking
 
 🚨 Why This Scanner is Different
 
-Feature This Scanner Slither Mythril Solhint
-Cross-function reentrancy ✅ Finds ❌ Misses ⚠️ Partial ❌ No
-Works in-browser ✅ Yes ❌ Needs filesystem ❌ Needs filesystem ✅ Yes
-Symbolic execution ✅ Yes ❌ No ✅ Yes ❌ No
-Tainted data tracking ✅ Yes ⚠️ Basic ❌ No ❌ No
-Interprocedural analysis ✅ Yes ⚠️ Limited ❌ No ❌ No
-No installation ✅ Web demo ❌ Python ❌ Python ✅ Plugin
+| Feature | This Scanner | Slither | Mythril | Solhint |
+|---------|--------------|---------|---------|---------|
+| **Cross-function reentrancy** | ✅ Finds | ❌ Misses | ⚠️ Partial | ❌ No |
+| **Works in-browser** | ✅ Yes | ❌ Needs filesystem | ❌ Needs filesystem | ✅ Yes |
+| **Symbolic execution** | ✅ Yes | ❌ No | ✅ Yes | ❌ No |
+| **Tainted data tracking** | ✅ Yes | ⚠️ Basic | ❌ No | ❌ No |
+| **Interprocedural analysis** | ✅ Yes | ⚠️ Limited | ❌ No | ❌ No |
+| **No installation** | ✅ Web demo | ❌ Python | ❌ Python | ✅ Plugin |
 
 ---
 
