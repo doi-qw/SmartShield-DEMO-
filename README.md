@@ -1,1 +1,1 @@
-# SmartShield-DEMO-
+# SolidityScanner-DEMO-
