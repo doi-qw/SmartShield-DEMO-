@@ -216,7 +216,7 @@ This scanner builds upon ideas from:
 Found a critical bug? Open a GitHub Issue.
 Want to integrate? DM on Twitter: @nikoo_qw
 Commercial licensing? Email: shis_hi@mail.ru
-and just my insta 😑: @doi_qw_ 
+and just my insta 😑: @malikilaev_ 
 
 ---
 
